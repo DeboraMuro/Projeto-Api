@@ -1,16 +1,11 @@
 CREATE TABLE tb_endereco (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    logradouro
-    numero
-    complemento
-    bairro
-    cidade
-    cep
-    estado
-    cliente_id  INT NOT NULL
-    -- titulo VARCHAR (50) NOT NULL,
-    -- descricao VARCHAR (255),
-    -- imagem VARCHAR(255) NOT NULL
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    logradouro VARCHAR(50) NOT NULL,
+    numero INT NOT NULL,
+    complemento VARCHAR(60),
+    bairro VARCHAR(20) NOT NULL,
+    cidade VARCHAR(20) NOT NULL,
+    cep INT NOT NULL,
+    estado VARCHAR(20) NOT NULL,
+    cliente_id  INT NOT NULL,
 );
-
-COMPLETAR TABELA
