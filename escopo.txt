@@ -1,0 +1,58 @@
+tb_banner {
+    FEITO
+}
+
+tb_categoria {
+    FEITO
+}
+
+tb_colecoes_destaque {
+    id
+}
+
+tb_produto {
+    id
+}
+
+tb_marca {
+    id
+}
+
+tb_carrinho {
+    id
+}
+
+tb_cupom {
+    id
+}
+
+tb_pedido {
+    id
+}
+
+tb_cliente {
+    id
+}
+
+tb_tipos_pagamento {
+    id, (opcionais: created_at, updated_at, status)
+}
+
+tb_usuario {
+    id, nome, email, senha, tipo(colaborador ou cliente)
+}
+*TB obrigatorias*
+- tb_colecoes_destaque
+- tb_produto
+- tb_marca
+- tb_carrinho
+- tb_cupom
+- tb_pedido
+- tb_cliente
+- tb_tipos_pagamento
+- tb_usuario
+
+*TB que acrescentei*
+- tb_endereco
+- tb_dados_cartao
+- tb_tamanhos
