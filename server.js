@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json()); //a comunicação toda vai ser feita em json, ta ligado!?
 app.use(categoryRoutes);
 app.use(bannerRoutes);
-app.use(carrinhoRoutes)
+app.use(carrinhoRoutes);
 
 app.listen(8000, () => {
     console.log('--------------');
