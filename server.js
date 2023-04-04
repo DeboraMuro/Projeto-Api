@@ -1,18 +1,30 @@
+
 const express = require('express');
 const categoryRoutes = require("./resources/category/routes");
 const bannerRoutes = require('./resources/banner/routes');
+
+
+const express = require ('express');
+const categoryRoutes = require ("./resources/category/routes");
+const bannerRoutes = require ("./resources/banner/routes");
+const colecoesRoutes = require ( "./resources/colecoes_destaque/routes");
 const carrinhoRoutes = require('./resources/carrinho/routes');
 
-
 const app = express();
+const cors= require ('cors');
 
-app.use(express.json()); //a comunicação toda vai ser feita em json, ta ligado!?
+app.use (cors());
+
+app.use(express.json());
 app.use(categoryRoutes);
 app.use(bannerRoutes);
-app.use(carrinhoRoutes)
+
+app.use(colecoesRoutes);
+app.use(carrinhoRoutes);
+
 
 app.listen(8000, () => {
     console.log('--------------');
-    console.log('--- PRONTO ---')
+    console.log('----PRONTO----');
     console.log('--------------');
 });
