@@ -5,6 +5,9 @@ const app = require('express').Router();
 const database = require('../../connection/database');
 const BASE_URL = '/banners';
 
+// const TABLE_NAME = 'tb_tamanhos'
+const BASE_URL = '/banners'
+
 app.get('/banners', async (req, res) => {
     let dados = await database.execute(`SELECT * FROM tb_banner`);
 
