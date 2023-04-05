@@ -3,8 +3,8 @@
 
 const app = require('express').Router();
 const database = require('../../connection/database');
-const BASE_URL = '/banners';
 
+const BASE_URL = '/banners';
 // const TABLE_NAME = 'tb_tamanhos'
 
 app.get('/banners', async (req, res) => {
