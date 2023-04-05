@@ -1,0 +1,4 @@
+CREATE TABLE tb_tamanho (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    tamanho VARCHAR(5) NOT NULL
+);
