@@ -37,12 +37,12 @@ app.patch(`${BASE_URL}/:id`, async (req, res) => {
     let jaExiste = await database.execute(`
         SELECT FROM ${TABLE_NAME} WHERE id='${req.params.id}'
     `);
-    //testando se realmente existe algum banner com aquele id
+
     if (undefined === jaExiste[0]) {
         res.sendStatus(404);
         return;
     }
-
+ 
     await database.execute(`
         UPDATE ${TABLE_NAME} SET
             nome='${req.body.nome || jaExiste[0].nome}',
