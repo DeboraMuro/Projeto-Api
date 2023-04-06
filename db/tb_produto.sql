@@ -7,6 +7,8 @@ CREATE TABLE tb_produto (
     referencia INT NOT NULL,
     imagem VARCHAR(255) NOT NULL,
     valor VARCHAR(10) NOT NULL,
-    tamanho_id INT NOT NULL,
-    marca_id INT NOT NULL
+    tamanho_id  INT
+    FOREIGN KEY (tamanho_id) REFERENCES tb_tamanho(id),
+    marca_id INT
+    FOREIGN KEY (marca_id) REFERENCES tb_tamanho(id)
 );
