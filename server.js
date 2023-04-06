@@ -11,9 +11,13 @@ const marcaRoutes = require('./resources/marca/routes');
 const cupomRoutes = require('./resources/cupom/routes');
 
 const app = express();
-const cors= require ('cors');
+const cors = require ('cors');
+const swagger = require('swagger-ui-express');
+const docs = require('./docs.json');
+
 
 app.use (cors());
+app.use('/documentacao', swagger.serve, swagger.setup(docs));
 
 app.use(express.json());
 app.use(categoryRoutes);
