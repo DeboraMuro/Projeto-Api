@@ -20,7 +20,7 @@ app.post('/cupom', async (req, res) => {
 
     let sql = await database.execute(`
       INSERT INTO tb_cupom (codigo, decricao)
-      VALUES ('${corpo.codigo}', '${corpo.descricao}')
+      VALUES ('${corpo.codigo}', '${corpo.descricao}');
     `);
 
     corpo.id = sql.insertId;
