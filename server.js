@@ -9,14 +9,16 @@ const colecoesRoutes = require ( "./resources/colecoes_destaque/routes");
 const carrinhoRoutes = require('./resources/carrinho/routes');
 const marcaRoutes = require('./resources/marca/routes');
 const cupomRoutes = require('./resources/cupom/routes');
+const cartaoRoutes = require('./resources/dados_cartao/routes');
+const pedidoRoutes = require('./resources/pedido/routes');
 
 const app = express();
-const cors = require ('cors');
+// const cors = require ('cors');
 const swagger = require('swagger-ui-express');
 const docs = require('./docs.json');
 
 
-app.use (cors());
+// app.use (cors());
 app.use('/documentacao', swagger.serve, swagger.setup(docs));
 
 app.use(express.json());
@@ -29,6 +31,8 @@ app.use(colecoesRoutes);
 app.use(carrinhoRoutes);
 app.use(marcaRoutes);
 app.use(cupomRoutes);
+app.use(cartaoRoutes);
+app.use(pedidoRoutes);
 
 app.listen(8000, () => {
     console.log('--------------');

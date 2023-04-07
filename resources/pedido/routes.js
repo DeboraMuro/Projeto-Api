@@ -1,8 +1,8 @@
 const app = require('express').Router();
-const database = require("../../connection/database");
+const database = require('../../connection/database');
 
 const TABLE_NAME = 'tb_pedido';
-const BASE_URL = '/pedidos';
+const BASE_URL = '/pedido';
 
 app.get (`${BASE_URL}`, async (req, res) =>{
 
