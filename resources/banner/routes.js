@@ -10,6 +10,7 @@ const BASE_URL = '/banners';
 app.get('/banners', async (req, res) => {
     let dados = await database.execute(`SELECT * FROM tb_banner`);
 
+    
     res.send(dados);
 });
 
@@ -18,6 +19,7 @@ app.get('/banners/:id', async (req, res) => {
         SELECT * FROM tb_banner WHERE id='${req.params.id}'
     `);
 
+    // res.send ('ok')
     res.send(dados[0]);
 });
 
@@ -31,6 +33,7 @@ app.post('/banners', async (req, res) => {
 
     corpo.id = sql.insertId;
     
+    // res.send ('ok')
     res.send(corpo);
 });
 
@@ -57,12 +60,14 @@ app.patch(`${BASE_URL}/:id`, async (req, res) => {
 
     dados.id = req.params.id;
 
+    // res.send ('ok')
     res.send(dados);
 });
 
 app.delete(`${BASE_URL}/:id`, async (req, res) => {
     await database.execute(`DELETE FROM tb_banner WHERE id='${req.params.id}'`)
 
+    // res.send ('ok')
     res.sendStatus(204);
 });
 
