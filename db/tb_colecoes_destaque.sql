@@ -5,3 +5,8 @@ CREATE TABLE tb_colecoes_destaque(
     imagem VARCHAR (255) NOT NULL
 );
 
+INSERT INTO tb_colecoes_destaque (titulo, desconto, imagem) VALUES ('Coleção Adidas' , '30%OFF', 'imagem');
+
+INSERT INTO tb_colecoes_destaque (titulo, desconto, imagem) VALUES ('Novo Drop Supreme' , '30%OFF', 'imagem');
+
+INSERT INTO tb_colecoes_destaque (titulo, desconto, imagem) VALUES ('Novo Beats Bass' , '30%OFF', 'imagem');

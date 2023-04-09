@@ -9,6 +9,8 @@ const colecoesRoutes = require ( "./resources/colecoes_destaque/routes");
 const carrinhoRoutes = require('./resources/carrinho/routes');
 const marcaRoutes = require('./resources/marca/routes');
 const cupomRoutes = require('./resources/cupom/routes');
+const cartaoRoutes = require('./resources/dados_cartao/routes');
+const pedidoRoutes = require('./resources/pedido/routes');
 const clienteRoutes = require('./resources/cliente/routes')
 
 const app = express();
@@ -29,6 +31,8 @@ app.use(colecoesRoutes);
 app.use(carrinhoRoutes);
 app.use(marcaRoutes);
 app.use(cupomRoutes);
+app.use(cartaoRoutes);
+app.use(pedidoRoutes);
 app.use(clienteRoutes)
 
 app.listen(8000, () => {
