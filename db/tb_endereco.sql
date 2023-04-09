@@ -6,12 +6,9 @@ CREATE TABLE tb_endereco (
     bairro VARCHAR(20) NOT NULL,
     cidade VARCHAR(20) NOT NULL,
     cep INT NOT NULL,
-    estado VARCHAR(20) NOT NULL,
-    cliente_id  INT
-    FOREIGN KEY (cliente_id) REFERENCES tb_cliente(id),
+    estado VARCHAR(20) NOT NULL
 );
 
--- INSERT INTO tb_endereco (logradouro, numero, complemento, bairro, cidade, cep, estado)
--- VALUES ('av Rua Padre Roma', 1150, 'casa', 'fatima', 'fortaleza', 60040360, 'CE')
+ALTER TABLE tb_endereco ADD cliente_id INT NOT NULL;
 
--- acrescentar no insomnia
+ALTER TABLE tb_endereco ADD CONSTRAINT cliente_id FOREIGN KEY (cliente_id) REFERENCES clientes(id);

@@ -11,12 +11,12 @@ const marcaRoutes = require('./resources/marca/routes');
 const cupomRoutes = require('./resources/cupom/routes');
 const cartaoRoutes = require('./resources/dados_cartao/routes');
 const pedidoRoutes = require('./resources/pedido/routes');
+const clienteRoutes = require('./resources/cliente/routes')
 
 const app = express();
 const cors = require ('cors');
 const swagger = require('swagger-ui-express');
 const docs = require('./docs.json');
-
 
 app.use (cors());
 app.use('/documentacao', swagger.serve, swagger.setup(docs));
@@ -33,6 +33,7 @@ app.use(marcaRoutes);
 app.use(cupomRoutes);
 app.use(cartaoRoutes);
 app.use(pedidoRoutes);
+app.use(clienteRoutes)
 
 app.listen(8000, () => {
     console.log('--------------');
