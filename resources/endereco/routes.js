@@ -18,7 +18,7 @@ app.get(`${BASE_URL}/:id`, async (req, res) => {
     res.send(dados[0]);
 });
 
-app.post(BASE_URL, async (req, res) => {        //não funciona (quebra a aplicação)
+app.post(BASE_URL, async (req, res) => {    
     let corpo = req.body;
 
     let sql = await database.execute(`
@@ -46,11 +46,11 @@ app.patch(`${BASE_URL}/:id`, async (req, res) => {
         UPDATE ${TABLE_NAME} SET
             logradouro='${req.body.logradouro || jaExiste[0].logradouro}',
             numero='${req.body.numero || jaExiste[0].numero}',
-            complemento='${req.body.complemento || jaExiste[0].complemento}'
-            bairro='${req.body.bairro || jaExiste[0].bairro}'
-            cidade='${req.body.cidade || jaExiste[0].cidade}'
-            cep='${req.body.cep || jaExiste[0].cep}'
-            estado='${req.body.estado || jaExiste[0].estado}'
+            complemento='${req.body.complemento || jaExiste[0].complemento}',
+            bairro='${req.body.bairro || jaExiste[0].bairro}',
+            cidade='${req.body.cidade || jaExiste[0].cidade}',
+            cep='${req.body.cep || jaExiste[0].cep}',
+            estado='${req.body.estado || jaExiste[0].estado}',
             cliente_id='${req.body.cliente_id || jaExiste[0].cliente_id}'
         WHERE id='${req.params.id}'
     `);
