@@ -1,8 +1,8 @@
 const app = require('express').Router();
 const database = require('../../connection/database');
 
-const TABLE_NAME = 'tb_produto'
-const BASE_URL = '/produtos'
+const TABLE_NAME = 'tb_produto';
+const BASE_URL = '/produtos';
 
 app.get(BASE_URL, async (req, res) => {
     let dados = await database.execute(`SELECT * FROM ${TABLE_NAME}`);

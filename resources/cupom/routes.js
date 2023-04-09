@@ -19,7 +19,7 @@ app.post('/cupom', async (req, res) => {
     let corpo = req.body;
 
     let sql = await database.execute(`
-      INSERT INTO tb_cupom (codigo, decricao)
+      INSERT INTO tb_cupom (codigo, descricao)
       VALUES ('${corpo.codigo}', '${corpo.descricao}');
     `);
 
