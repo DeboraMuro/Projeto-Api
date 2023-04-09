@@ -1,16 +1,16 @@
 const app = require('express').Router();
 const database = require('../../connection/database');
 
-const TABLE_NAME = 'tb_tamanho'
-const BASE_URL = '/tamanhos'
+const TABLE_NAME = 'tb_tamanho';
+const BASE_URL = '/tamanhos';
 
-app.get(BASE_URL, async (req, res) => {     //funciona
+app.get(BASE_URL, async (req, res) => {   
     let dados = await database.execute(`SELECT * FROM ${TABLE_NAME}`);
 
     res.send(dados);
 });
 
-app.get(`${BASE_URL}/:id`, async (req, res) => {    //funciona
+app.get(`${BASE_URL}/:id`, async (req, res) => {   
     let dados = await database.execute(`
     SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'
 `);
@@ -18,7 +18,7 @@ app.get(`${BASE_URL}/:id`, async (req, res) => {    //funciona
 res.send(dados[0]);
 });
 
-app.post(BASE_URL, async (req, res) => {        //funciona
+app.post(BASE_URL, async (req, res) => {    
     let corpo = req.body;
 
     let sql = await database.execute(`
@@ -31,7 +31,7 @@ app.post(BASE_URL, async (req, res) => {        //funciona
     res.send(corpo);
 });
 
-app.patch(`${BASE_URL}/:id`, async (req, res) => {      //funciona
+app.patch(`${BASE_URL}/:id`, async (req, res) => {  
     let dados = req.body;
 
     let jaExiste = await database.execute(`
@@ -54,7 +54,7 @@ app.patch(`${BASE_URL}/:id`, async (req, res) => {      //funciona
     res.send(dados);
 });
 
-app.delete(`${BASE_URL}/:id`, async (req, res) => {     //funciona
+app.delete(`${BASE_URL}/:id`, async (req, res) => {   
     await database.execute(`DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}'`);
 
     res.sendStatus(204);
