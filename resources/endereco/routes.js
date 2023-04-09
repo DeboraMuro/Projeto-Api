@@ -18,7 +18,7 @@ app.get(`${BASE_URL}/:id`, async (req, res) => {
     res.send(dados[0]);
 });
 
-app.post(BASE_URL, async (req, res) => {
+app.post(BASE_URL, async (req, res) => {        //não funciona (quebra a aplicação)
     let corpo = req.body;
 
     let sql = await database.execute(`
@@ -35,7 +35,7 @@ app.patch(`${BASE_URL}/:id`, async (req, res) => {
     let dados = req.body;
 
     let jaExiste = await database.execute(`
-        SELECT FROM ${TABLE_NAME} WHERE id='${req.params.id}'
+        SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'
     `);
     if (undefined === jaExiste[0]) {
         res.sendStatus(404);
@@ -61,7 +61,7 @@ app.patch(`${BASE_URL}/:id`, async (req, res) => {
 });
 
 app.delete(`${BASE_URL}/:id`, async (req, res) => {
-    await database.execute(`DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}`);
+    await database.execute(`DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}'`);
     
     res.sendStatus(204);
 });

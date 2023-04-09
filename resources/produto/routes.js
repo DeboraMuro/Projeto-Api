@@ -1,7 +1,7 @@
 const app = require('express').Router();
 const database = require('../../connection/database');
 
-const TABLE_NAME = 'tb_produtos'
+const TABLE_NAME = 'tb_produto'
 const BASE_URL = '/produtos'
 
 app.get(BASE_URL, async (req, res) => {
@@ -35,7 +35,7 @@ app.patch(`${BASE_URL}/:id`, async (req, res) => {
     let dados = req.body;
 
     let jaExiste = await database.execute(`
-        SELECT FROM ${TABLE_NAME} WHERE id='${req.params.id}'
+        SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'
     `);
 
     if (undefined === jaExiste[0]) {
@@ -63,7 +63,7 @@ app.patch(`${BASE_URL}/:id`, async (req, res) => {
 });
 
 app.delete(`${BASE_URL}/:id`, async (req, res) => {
-    await database.execute(`DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}`);
+    await database.execute(`DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}'`);
 
     res.sendStatus(204);
 });
