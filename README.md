@@ -1,10 +1,10 @@
 # Projeto-Api
 
--Descrição do projeto:
+-DESCRIÇÃO DO PROJETO:
 
 Projeto de Back-end, com a estruturação para um eccomerce, com tabelas criadas com o SQL.
 
--Como rodar o código em sua máquina:
+-COMO RODAR O CÓDIGO EM SUA MÁQUINA:
 
   1-Após clonar o código rode no terminal "npm install" para trazer todas as depêndencias utilizadas;
   
@@ -14,13 +14,16 @@ Projeto de Back-end, com a estruturação para um eccomerce, com tabelas criadas
   
   4-É importante realizar a importação no insomnia de todos os arquivos com o nome "Insomnia..." para conseguir realizar a testagem dos endpoints criados e utilizar os verbos HTTP: Get, Post, Path, Delete;
   
--Como acessar a documentação:
+-COMO ACESSAR A DOCUMENTAÇÃO:
 
 A documentação pode ser acessada através do link: http://localhost:8000/documentacao/#/ 
 
--Autores do projeto:
+-AUTORES DO PROJETO:
 
   -Débora Muro,
-  -Egislane Gomes
+  
+  -Egislane Gomes,
+  
   -Carolina Virginio,
+  
   -Júlia Lopes.
