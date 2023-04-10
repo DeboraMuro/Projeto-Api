@@ -13,7 +13,7 @@ VALUES
 (1, 'Cartão de Crédito', 'Pagamento por cartão de crédito', true, 0.0, 1, 'Aceitamos os cartões Visa, Mastercard e American Express. O pagamento é processado imediatamente.'),
 (2, 'Boleto Bancário', 'Pagamento por boleto bancário', true, 0.0, 2, 'O boleto é gerado automaticamente e deve ser pago até a data de vencimento. O pagamento pode levar até 2 dias úteis para ser processado.'),
 (3, 'Transferência Bancária', 'Pagamento por transferência bancária', false, 0.0, 3, 'Entre em contato com nosso suporte para obter as informações da conta bancária para a transferência. O pagamento pode levar até 3 dias úteis para ser processado.'),
-(4, 'Pix', 'Pagamento por Pix', true, 10.0, 0, 'O código Pix será gerado automaticamente após a finalização da compra. O desconto de 10% será aplicado automaticamente ao valor total da compra. O pagamento é processado imediatamente.')
+(4, 'Pix', 'Pagamento por Pix', true, 10.0, 0, 'O código Pix será gerado automaticamente após a finalização da compra. O desconto de 10% será aplicado automaticamente ao valor total da compra. O pagamento é processado imediatamente.');
 
 SELECT * FROM tipos_pagamento;
 
