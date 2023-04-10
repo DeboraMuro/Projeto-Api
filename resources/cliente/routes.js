@@ -11,6 +11,14 @@ app.get(BASE_URL, async (req, res) => {
   res.send(dados);
 });
 
+app.get(`${BASE_URL}/:id`, async (req, res) => {
+  let dados = await database.execute(`
+  SELECT * FROM ${TABLE_NAME} WHERE id= '${req.params.id}
+  `);
+
+  res.send(dados[0]);
+});
+
 // Rota POST
 app.post(BASE_URL, async (req, res) => {
   let corpo = req.body;

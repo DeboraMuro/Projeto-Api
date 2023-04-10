@@ -1,43 +1,53 @@
-const express = require('express');
-const app = express();
-const port = 8000;
+const app = require('express').Router();
+const database = require("../../connection/database");
 
-// Middleware para interpretar JSON no corpo da requisição
-app.use(express.json());
+const TABLE_NAME = 'colaborador';
+const BASE_URL = '/colaborador';
 
-// Rota GET para listar todos os itens
-app.get('/itens', (req, res) => {
-  res.send('Listagem de todos os itens');
+// Rota GET
+app.get(BASE_URL, async (req, res) => {
+  let dados = await database.execute(`SELECT * FROM ${TABLE_NAME}`);
+
+  res.send(dados);
 });
 
-// Rota GET para buscar um item específico pelo ID
-app.get('/itens/:id', (req, res) => {
+app.get(`${BASE_URL}/:id`, async (req, res) => {
+  let dados = await database.execute(`
+  SELECT * FROM ${TABLE_NAME} WHERE id= '${req.params.id}
+  `);
+
+  res.send(dados[0]);
+});
+
+// Rota POST
+app.post(BASE_URL, async (req, res) => {
+  let corpo = req.body;
+
+  let sql = await database.execute(`
+      INSERT INTO ${TABLE_NAME} (nome, email, senha, ultimo login, situacao)
+      VALUES ('${corpo.nome}', '${corpo.email}', '${corpo.senha}', '${corpo.ultimologin}', '${corpo.situacao}')
+  `);
+
+  corpo.id = sql.insertId;
+  
+  res.send(corpo);
+});
+
+// Rota PUT
+app.put(`${BASE_URL}/:id`, (req, res) => {
   const id = req.params.id;
-  res.send(`Item com ID ${id}`);
+  const { nome, email } = req.body;
+  res.send(`Colaborador atualizado: ${id}, ${nome}, ${email}`);
 });
 
-// Rota POST para inserir um novo item
-app.post('/itens', (req, res) => {
-  const { nome, preco } = req.body;
-  res.send(`Novo item ${nome} adicionado com preço ${preco}`);
+// Rota DELETE
+app.delete(`${BASE_URL}/:id`, async (req, res) => {
+  await database.execute(`DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}`);
+    
+  res.sendStatus(204);
 });
 
-// Rota PUT para atualizar um item pelo ID
-app.put('/itens/:id', (req, res) => {
-  const id = req.params.id;
-  const { nome, preco } = req.body;
-  res.send(`Item com ID ${id} atualizado para ${nome} com preço ${preco}`);
-});
 
-// Rota DELETE para remover um item pelo ID
-app.delete('/itens/:id', (req, res) => {
-  const id = req.params.id;
-  res.send(`Item com ID ${id} removido`);
-});
-
-app.listen(port, () => {
-  console.log(`Servidor rodando na porta ${port}`);
-});
 
 
 module.exports = app;

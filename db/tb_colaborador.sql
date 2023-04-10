@@ -1,4 +1,4 @@
-CREATE TABLE tb_colaboradores (
+CREATE TABLE colaboradores (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nome VARCHAR(50) NOT NULL,
   email VARCHAR(50) NOT NULL UNIQUE,
