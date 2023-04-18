@@ -15,7 +15,6 @@ app.get(`${BASE_URL}/:id`, async (req, res) =>{
         SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'
     `);
 
-    // res.send ('ok')
     res.send(dados[0]);
 });
 
@@ -29,7 +28,6 @@ app.post(`${BASE_URL}`, async (req, res) =>{
 
     corpo.id = sql.insertId;
     
-    // res.send ('ok')
     res.send(corpo);
 
 });
@@ -41,7 +39,7 @@ app.patch(`${BASE_URL}/:id`, async (req, res) =>{
         SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'
     `);
 
-    //testando se realmente se existe algumA Colecao com aquele id
+    //testando se realmente se existe alguma Colecao com aquele id
     if (undefined === jaExiste[0]) {
         res.sendStatus(404);
         return;
@@ -63,10 +61,7 @@ app.patch(`${BASE_URL}/:id`, async (req, res) =>{
 app.delete(`${BASE_URL}/:id`, async (req, res) => {
     await database.execute(`DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}'`)
 
-    // res.send ('ok')
     res.sendStatus(204);
 });
-
-
 
 module.exports = app;
