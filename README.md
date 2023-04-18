@@ -27,3 +27,6 @@ A documentação pode ser acessada através do link: http://localhost:8000/docum
   -Carolina Virginio,
   
   -Júlia Lopes.
+
+
+#Atualmente projeto segue em atualização apenas pela autora Débora Muro, para implementação de melhorias para um modelo de projeto API mais completo.
