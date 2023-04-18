@@ -1,10 +1,10 @@
-CREATE TABLE colaboradores (
+CREATE TABLE tb_colaborador (
   id INT PRIMARY KEY AUTO_INCREMENT,
   nome VARCHAR(50) NOT NULL,
   email VARCHAR(50) NOT NULL UNIQUE,
   senha VARCHAR(255) NOT NULL,
   ultimo_login TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  ativo BOOLEAN DEFAULT true
+  ativo BOOLEAN DEFAULT true  
 );
 
 -- Insere um registro de colaborador

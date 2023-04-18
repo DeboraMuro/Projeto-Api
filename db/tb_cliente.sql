@@ -1,4 +1,4 @@
-CREATE TABLE clientes (
+CREATE TABLE tb_cliente (
     id INT(11) NOT NULL AUTO_INCREMENT,
     nome VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
@@ -13,7 +13,7 @@ CREATE TABLE clientes (
 
 
 
-INSERT INTO clientes (nome, email, telefone, endereco, cidade, estado, cep, data_cadastro)
+INSERT INTO tb_cliente (nome, email, telefone, endereco, cidade, estado, cep, data_cadastro)
 VALUES ('Luiza Oliveira', 'luizaoliveira@email.com', '(85) 99123-4567', 
         'Rua Cônego de Castro - bairro Parque Santa Maria', 'Fortaleza', 'Ce', '12345-678', '2022-03-14 15:02:00'),
         ('Rafael Santos', 'rafaelsantos@email.com', '(85) 98123-4567', 
