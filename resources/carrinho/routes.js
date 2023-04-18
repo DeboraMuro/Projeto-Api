@@ -1,25 +1,28 @@
 const app = require('express').Router();
 const database = require('../../connection/database');
 
-app.get('/carrinho', async (req, res) => {
-    let dados = await database.execute(`SELECT * FROM tb_carrinho`);
+const TABLE_NAME = 'tb_carrinho';
+const BASE_URL = '/carrinhos';
+
+app.get(BASE_URL, async (req, res) => {   
+    let dados = await database.execute(`SELECT * FROM ${TABLE_NAME}`);
 
     res.send(dados);
-  });
-
-app.get('/carrinho/:id', async (req, res) => {
-    let dados = await database.execute(`
-        SELECT * FROM tb_carrinho WHERE id='${req.params.id}'
-    `);
-
-    res.send(dados[0]);
 });
 
-app.post('/carrinho', async (req, res) => {
+app.get(`${BASE_URL}/:id`, async (req, res) => {   
+    let dados = await database.execute(`
+    SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'
+`);
+
+res.send(dados[0]);
+});
+
+app.post(BASE_URL, async (req, res) => {
     let corpo = req.body;
 
     let sql = await database.execute(`
-       INSERT INTO tb_carrinho (produto_id, marca_id, cor, tamanho, quantidade, valor, total)
+       INSERT INTO ${TABLE_NAME} (produto_id, marca_id, cor, tamanho, quantidade, valor, total)
        VALUES ('${corpo.produto_id}', '${corpo.marca_id}', '${corpo.cor}', '${corpo.tamanho}', '${corpo.quantidade}', '${corpo.valor}', '${corpo.total}')
     `);
 
@@ -28,11 +31,11 @@ app.post('/carrinho', async (req, res) => {
     res.send(corpo);
 });
 
-app.patch('/carrinho/:id', async (req, res) => {
+app.patch(`${BASE_URL}/:id`, async (req, res) => {
     let dados = req.body;
 
     let jaExiste = await database.execute(`
-        SELECT * FROM tb_carrinho WHERE id='${req.params.id}'
+        SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'
     `);
 
     if (undefined === jaExiste[0]) {
@@ -41,7 +44,7 @@ app.patch('/carrinho/:id', async (req, res) => {
     }
 
     await database.execute(`
-        UPDATE tb_carrinho SET
+        UPDATE ${TABLE_NAME} SET
             produto_id='${req.body.produto_id || jaExiste[0].produto_id}',
             marca_id='${req.body.marca_id || jaExiste[0].marca_id}',
             cor='${req.body.cor || jaExiste[0].cor}',
@@ -57,8 +60,8 @@ app.patch('/carrinho/:id', async (req, res) => {
     res.send(dados);
 });
 
-app.delete('/carrinho/:id', async (req, res) => {
-    await database.execute(`DELETE FROM tb_carrinho WHERE id='${req.params.id}'`)
+app.delete(`${BASE_URL}/:id`, async (req, res) => {
+    await database.execute(`DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}'`);
 
     res.sendStatus(204);
 });
