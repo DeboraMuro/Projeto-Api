@@ -13,9 +13,9 @@ app.get(BASE_URL, async (req, res) => {
 app.get(`${BASE_URL}/:id`, async (req, res) => {   
     let dados = await database.execute(`
     SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'
-`);
+    `);
 
-res.send(dados[0]);
+    res.send(dados[0]);
 });
 
 app.post(BASE_URL, async (req, res) => {    
