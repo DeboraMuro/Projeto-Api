@@ -12,32 +12,32 @@ app.get (`${BASE_URL}`, async (req, res) =>{
 
 
 app.get(`${BASE_URL}/:id`, async (req, res) =>{
-    let dados = await database.execute(`SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'`);
+    let dados = await database.execute(`
+    SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'
+    `);
 
-    res.send (dados);
+    res.send (dados[0]);
 });
 
 
 app.post(`${BASE_URL}`, async (req, res) =>{
     let corpo = req.body;
 
-    let sql = await database.execute(`INSERT INTO ${TABLE_NAME} (numero_cartao , validade, CVV, titular, cliente_id) 
+    let sql = await database.execute(`
+    INSERT INTO ${TABLE_NAME} (numero_cartao , validade, CVV, titular, cliente_id) 
     VALUES ('${corpo.numero_cartao}', '${corpo.validade}', '${corpo.CVV}', '${corpo.titular}', '${corpo.cliente_id}')
     `);
 
     corpo.id = sql.insertId;
     
-    // res.send ('ok')
     res.send(corpo);
 });
-
-
 
 app.patch(`${BASE_URL}/:id`, async (req, res) =>{
     let dados = req.body;
 
     let jaExiste = await database.execute(`
-        SELECT * FROM tb_banner WHERE id='${req.params.id}'
+        SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'
     `);
 
     if (undefined === jaExiste[0]) {
@@ -57,17 +57,16 @@ app.patch(`${BASE_URL}/:id`, async (req, res) =>{
 
     dados.id = req.params.id;
 
-    // res.send ('ok')
     res.send(dados);
 });
 
 app.delete(`${BASE_URL}/:id`, async (req, res) => {
-    await database.execute(`DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}'`)
+    await database.execute(`
+    DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}'
+    `);
 
-    // res.send ('ok')
     res.sendStatus(204);
 });
-
 
 
 module.exports = app;
