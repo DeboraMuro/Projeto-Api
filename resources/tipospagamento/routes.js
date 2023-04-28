@@ -59,7 +59,6 @@ app.patch(`${BASE_URL}/:id`, async (req, res) => {
   res.send(dados);
 });
 
-// Rota DELETE
 app.delete(`${BASE_URL}/:id`, async (req, res) => {
   await database.execute(`
   DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}

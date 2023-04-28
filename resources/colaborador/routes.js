@@ -4,7 +4,6 @@ const database = require("../../connection/database");
 const TABLE_NAME = 'tb_colaborador';
 const BASE_URL = '/colaboradores';
 
-// Rota GET
 app.get(BASE_URL, async (req, res) => {
   let dados = await database.execute(`SELECT * FROM ${TABLE_NAME}`);
 
@@ -19,7 +18,6 @@ app.get(`${BASE_URL}/:id`, async (req, res) => {
   res.send(dados[0]);
 });
 
-// Rota POST
 app.post(BASE_URL, async (req, res) => {
   let corpo = req.body;
 
@@ -33,7 +31,6 @@ app.post(BASE_URL, async (req, res) => {
   res.send(corpo);
 });
 
-// Rota PATCH
 app.patch(`${BASE_URL}/:id`, async (req, res) => {
   let dados = req.body;
 
@@ -61,9 +58,10 @@ app.patch(`${BASE_URL}/:id`, async (req, res) => {
   res.send(dados);
 });
 
-// Rota DELETE
 app.delete(`${BASE_URL}/:id`, async (req, res) => {
-  await database.execute(`DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}`);
+  await database.execute(`
+  DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}
+  `);
     
   res.sendStatus(204);
 });
