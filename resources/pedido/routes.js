@@ -2,24 +2,28 @@ const app = require('express').Router();
 const database = require('../../connection/database');
 
 const TABLE_NAME = 'tb_pedido';
-const BASE_URL = '/pedido';
+const BASE_URL = '/pedidos';
 
-app.get (`${BASE_URL}`, async (req, res) =>{
-    let dados = await database.execute(`SELECT * FROM ${TABLE_NAME}`)
-    res.send (dados)
+app.get (BASE_URL, async (req, res) =>{
+    let dados = await database.execute(`SELECT * FROM ${TABLE_NAME}`);
+
+    res.send (dados);
 });
 
 app.get(`${BASE_URL}/:id`, async (req, res) =>{
-    let dados = await database.execute(`SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'
-    `)
+    let dados = await database.execute(`
+    SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'
+    `);
+
     res.send (dados[0]);
 });
 
-app.post(`${BASE_URL}`, async (req, res) =>{
+app.post(BASE_URL, async (req, res) =>{
     let corpo = req.body;
     
-    let sql= await database.execute(`INSERT INTO ${TABLE_NAME} (cliente_id, valor_pedido, valor_frete, cartao, produto_id) VALUES ('${corpo.cliente_id}',
-    '${corpo.valor_pedido}', '${corpo.valor_frete}', '${corpo.cartao}','${corpo.produto_id}')
+    let sql= await database.execute(`
+    INSERT INTO ${TABLE_NAME} (cliente_id, valor_pedido, valor_frete, cartao, produto_id) 
+    VALUES ('${corpo.cliente_id}', '${corpo.valor_pedido}', '${corpo.valor_frete}', '${corpo.cartao}','${corpo.produto_id}')
     `);
 
     corpo.id = sql.insertId;
@@ -27,9 +31,7 @@ app.post(`${BASE_URL}`, async (req, res) =>{
     res.send(corpo);
 });
 
-
 app.patch(`${BASE_URL}/:id`, async (req, res) =>{
-
     let dados = req.body;
 
     let jaExiste = await database.execute(`
@@ -57,11 +59,12 @@ app.patch(`${BASE_URL}/:id`, async (req, res) =>{
 });
 
 app.delete(`${BASE_URL}/:id`, async (req, res) => {
-    await database.execute(`DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}'`)
+    await database.execute(`
+    DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}'
+    `);
 
     res.sendStatus(204);
 });
-
 
 
 module.exports = app;

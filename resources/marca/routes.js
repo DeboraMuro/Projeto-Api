@@ -1,21 +1,24 @@
 const app = require('express').Router();
 const database = require('../../connection/database');
 
-app.get('/marca', async (req, res) => {
-    let dados = await database.execute(`SELECT * FROM tb_marca`);
+const TABLE_NAME = 'tb_marca';
+const BASE_URL = '/marcas';
+
+app.get(BASE_URL, async (req, res) => {
+    let dados = await database.execute(`SELECT * FROM ${TABLE_NAME}`);
 
     res.send(dados);
 });
 
-app.get('/marca/:id', async (req, res) => {
+app.get(`${BASE_URL}/:id`, async (req, res) => {
     let dados = await database.execute(`
-        SELECT * FROM tb_marca WHERE id='${req.params.id}'
+        SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'
     `);
 
     res.send(dados[0]);
 });
 
-app.post('/marca', async (req, res) => {
+app.post(BASE_URL, async (req, res) => {
     let corpo = req.body;
 
     let sql = await database.execute(`
@@ -28,11 +31,11 @@ app.post('/marca', async (req, res) => {
     res.send(corpo);
 });
 
-app.patch('/marca/:id', async (req, res) => {
+app.patch(`${BASE_URL}/:id`, async (req, res) => {
     let dados = req.body;
 
     let jaExiste = await database.execute(`
-        SELECT * FROM tb_marca WHERE id='${req.params.id}'
+        SELECT * FROM ${TABLE_NAME} WHERE id='${req.params.id}'
     `);
 
     if (undefined === jaExiste[0]) {
@@ -41,7 +44,7 @@ app.patch('/marca/:id', async (req, res) => {
     }
 
     await database.execute(`
-        UPDATE tb_marca SET
+        UPDATE ${TABLE_NAME} SET
             nome='${req.body.nome || jaExiste[0].nome}',
             imagem='${req.body.imagem || jaExiste[0].imagem}'
         WHERE id='${req.params.id}'
@@ -52,10 +55,13 @@ app.patch('/marca/:id', async (req, res) => {
     res.send(dados);
 });
 
-app.delete('/marca/:id', async (req, res) => {
-    await database.execute(`DELETE FROM tb_marca WHERE id='${req.params.id}'`)
+app.delete(`${BASE_URL}/:id`, async (req, res) => {
+    await database.execute(`
+    DELETE FROM ${TABLE_NAME} WHERE id='${req.params.id}'
+    `);
 
     res.sendStatus(204);
 });
+
 
 module.exports = app;
